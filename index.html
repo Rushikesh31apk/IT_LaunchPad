@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT LaunchPad - Your Journey to Tech Career</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .tech-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+        }
+
+        .tech-background::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Main Container */
+        .main-container {
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        /* Section Card */
+        .section-card {
+            background: rgba(26, 31, 58, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .section-card.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .section-card:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(1.3);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        /* Profile Image */
+        .profile-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 2rem auto;
+        }
+
+        .profile-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            animation: rotate 3s linear infinite;
+        }
+
+        .profile-ring:nth-child(1) {
+            border-top-color: #3b82f6;
+            border-right-color: #3b82f6;
+        }
+
+        .profile-ring:nth-child(2) {
+            border-bottom-color: #8b5cf6;
+            border-left-color: #8b5cf6;
+            animation-direction: reverse;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .profile-img {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
+        }
+
+        .nav-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.2);
+            z-index: 1000;
+        }
+
+        .progress-bar-custom {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            color: #3b82f6;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Lists */
+        .content-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-list li {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .content-list li:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateX(10px);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .info-card h4 {
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        /* Table Styling */
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .custom-table th {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .custom-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .custom-table tr:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(59, 130, 246, 0.2);
+            border: 2px solid #3b82f6;
+            color: #3b82f6;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #3b82f6;
+            color: white;
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(59, 130, 246, 0.3);
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-header {
+                font-size: 1.8rem;
+            }
+
+            .section-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Logo Animation */
+        .logo-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .animated-logo {
+            font-size: 4rem;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            width: 80px;
+            border: 2px solid #007bff;
+        }
+
+        .step-number {
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            margin: 0 auto 5px;
+            font-weight: bold;
+        }
+
+        .step-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ec4899;
+        }
+
+        .process-arrow {
+            margin: 0 15px;
+            color: #c9e915;
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .process-step {
+                width: 60px;
+                padding: 8px;
+            }
+
+            .step-label {
+                font-size: 12px;
+                color: #ec4899;
+            }
+
+            .process-arrow {
+                margin: 0 8px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar-custom" id="progressBar"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="tech-background"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-rocket"></i> IT LaunchPad</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <span class="navbar-text">
+                    <i class="fas fa-user-graduate"></i> By Rushikesh Narawade
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container main-container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="logo-container">
+                <div class="animated-logo">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+            <h1 class="hero-title">Campus To Corporate</h1>
+            <p class="hero-subtitle">Your Journey from Student to Developer</p>
+
+            <!-- Profile Image Placeholder -->
+            <div class="profile-container">
+                <div class="profile-ring"></div>
+                <div class="profile-ring"></div>
+                <img src="linkedinp.jpg" alt="Rushikesh Narawade" class="profile-img">
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="showSection(0)"><i class="fas fa-home"></i> Introduction</button>
+            <button class="nav-btn" onclick="showSection(1)"><i class="fas fa-list"></i> Agenda</button>
+            <button class="nav-btn" onclick="showSection(2)"><i class="fas fa-industry"></i> Industry Overview</button>
+            <button class="nav-btn" onclick="showSection(3)"><i class="fas fa-route"></i> Career Paths</button>
+            <button class="nav-btn" onclick="showSection(4)"><i class="fas fa-code-branch"></i> Tech Stack</button>
+            <button class="nav-btn" onclick="showSection(5)"><i class="fas fa-book"></i> Learning</button>
+            <button class="nav-btn" onclick="showSection(6)"><i class="fas fa-project-diagram"></i> Projects</button>
+            <button class="nav-btn" onclick="showSection(7)"><i class="fas fa-file-alt"></i> Resume</button>
+            <button class="nav-btn" onclick="showSection(8)"><i class="fas fa-search"></i> Job Search</button>
+            <button class="nav-btn" onclick="showSection(9)"><i class="fas fa-comments"></i> Interviews</button>
+            <button class="nav-btn" onclick="showSection(10)"><i class="fas fa-trophy"></i> Success</button>
+        </div>
+
+        <!-- Content Sections -->
+        <div id="contentContainer"></div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-buttons" style="margin-top: 3rem;">
+            <button class="nav-btn" onclick="previousSection()"><i class="fas fa-arrow-left"></i> Previous</button>
+            <button class="nav-btn" onclick="nextSection()"><i class="fas fa-arrow-right"></i> Next</button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/rushikesh-narawade-65a095236/" target="_blank" class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/Rushikesh31apk" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:narawaderushkesh@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <p>&copy; 2025 IT LaunchPad by Rushikesh Narawade | All Rights Reserved | Developed by Nexora Tech</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Create floating particles
+        function createParticles() {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                document.body.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Content sections data
+        const sections = [
+            {
+                title: "Welcome to IT LaunchPad",
+                icon: "fa-rocket",
+                content: `
+                    <p class="lead">Hello everyone, and welcome to IT LaunchPad!</p>
+                    <p>My name is <strong>Rushikesh Narawade</strong>, and I'm standing before you today not just as a speaker, but as someone who was once exactly where you are—sitting in a classroom, passionate about technology, but unsure how to turn that passion into a professional career in IT.</p>
+                    
+                    <h3 class="mt-4 mb-3">📌 Where I Am Today</h3>
+                    <div class="cards-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-briefcase"></i> Backend Developer</h4>
+                            <p>Working at Deloitte USI, building solutions for global clients using SAP ABAP- Advanced Business Programming Language</p>
+                        </div>
+                        <div class="info-card"> 
+                            <h4><i class="fas fa-user-tie"></i> Freelancer</h4> 
+                            <p>Providing end-to-end website and mobile application development services for businesses, startups, and individual clients</p> 
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-chalkboard-teacher"></i> Tech Trainer</h4>
+                            <p>Trained hundreds of students toward IT careers through mentoring, skill planning, and practical learning paths</p>
+                        </div>
+                    </div>
+
+                   <h3 class="mt-4 mb-3">📌 My Mission</h3>
+<p>After working in the IT industry, I noticed that students often need more practical guidance to feel confident for real-world jobs. IT LaunchPad is created to help students understand how the industry works and prepare step by step.</p>
+
+<div class="alert alert-info mt-4">
+    <i class="fas fa-lightbulb"></i> 
+    <strong>This is not a theory-only session</strong> — it focuses on practical learning, real examples, and clear career guidance.
+</div>
+
+                `
+            },
+            {
+                title: "Workshop Agenda",
+                icon: "fa-list-check",
+                content: `
+                    <p class="lead">Here's what we'll cover in today's comprehensive workshop:</p>
+                    <ul class="content-list">
+                        <li><strong>Step 1:</strong> Understanding How the IT Industry Works</li>
+                        <li><strong>Step 2:</strong> Exploring IT Roles & Career Paths</li>
+                        <li><strong>Step 3:</strong> Choosing the Right Programming Language or Tech Stack</li>
+                        <li><strong>Step 4:</strong> How to Learn Programming the Right Way</li>
+                        <li><strong>Step 5:</strong> Building Real-World Projects</li>
+                        <li><strong>Step 6:</strong> Resume Structuring for Students & Freshers</li>
+                        <li><strong>Step 7:</strong> Building a Strong LinkedIn Profile & Network</li>
+                        <li><strong>Step 8:</strong> Smart Job Search & Application Strategies</li>
+                        <li><strong>Step 9:</strong> Interview Preparation & Common Patterns</li>
+                        <li><strong>Step 10:</strong> Mock Interviews & Real-World Scenarios</li>
+                        <li><strong>Step 11:</strong> Consistency, Discipline & Long-Term Growth</li>
+                        <li><strong>Step 12:</strong> Open Q&A And Program Wrap-Up</li>
+                    </ul>
+                    
+                    <div class="alert alert-success mt-4">
+                        <i class="fas fa-check-circle"></i> By the end of today, you'll have a clear, actionable plan for your IT career!
+                    </div>
+                `
+            },
+            {
+                title: "Understanding the IT Industry",
+                icon: "fa-building",
+                content: `
+        <h3>🔹 How IT Companies Operate</h3>
+        <p>Think of an IT company like a team solving business problems with technology:</p>
+        
+        <div class="cards-grid">
+            <div class="info-card">
+                <h4><i class="fas fa-lightbulb"></i> 1. Business Need</h4>
+                <p>A company needs a solution (app, website, system)</p>
+                <small>Example: Bank needs online banking</small>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-clipboard-list"></i> 2. Requirements</h4>
+                <p>Business analysts document what needs to be built</p>
+                <small>Features, design, functions specified</small>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-code"></i> 3. Development</h4>
+                <p>Developers code the solution in teams</p>
+                <small>Frontend, Backend, Database work together</small>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-bug"></i> 4. Testing</h4>
+                <p>Testers check everything works correctly</p>
+                <small>Find and fix bugs before launch</small>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-rocket"></i> 5. Deployment</h4>
+                <p>Solution goes live for users</p>
+                <small>Hosted on servers/in cloud</small>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-sync-alt"></i> 6. Maintenance</h4>
+                <p>Updates, fixes, improvements continue</p>
+                <small>Add new features, fix issues</small>
+            </div>
+        </div>
+
+        <h3 class="mt-5">🔹 Real-World Example: Food Delivery App</h3>
+        <div class="cards-grid">
+            <div class="info-card">
+                <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
+                <p>App uses GPS to find your location</p>
+                <small>Google Maps/Apple Maps API</small>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-store"></i> Restaurant List</h4>
+                <p>Database shows nearby restaurants</p>
+                <small>Stored in cloud servers</small>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-shopping-cart"></i> Order</h4>
+                <p>Your order sent to restaurant's system</p>
+                <small>Real-time API communication</small>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-credit-card"></i> Payment</h4>
+                <p>Secure payment processing</p>
+                <small>Encrypted transaction</small>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-motorcycle"></i> Delivery</h4>
+                <p>Driver assigned and tracked</p>
+                <small>Live location updates</small>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-bell"></i> Notifications</h4>
+                <p>Updates sent to your phone</p>
+                <small>Order status, promotions</small>
+            </div>
+        </div>
+
+        <h3 class="mt-5">🔹 Types of IT Companies</h3>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-handshake"></i> Service Companies</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>What they do:</strong> Build software FOR other companies</p>
+                        <p><strong>Examples:</strong> TCS, Infosys, Wipro, Deloitte</p>
+                        <p><strong>Good for:</strong> Learning variety of projects</p>
+                        <p><strong>Work:</strong> Client requirements decide technology</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-box"></i> Product Companies</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>What they do:</strong> Build their OWN software products</p>
+                        <p><strong>Examples:</strong> Google, Microsoft, Amazon, Adobe</p>
+                        <p><strong>Good for:</strong> Deep expertise in one product</p>
+                        <p><strong>Work:</strong> Use latest technologies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-info mt-4">
+            <i class="fas fa-graduation-cap"></i> <strong>Career Tip:</strong> Start in service companies to learn broadly, then move to product companies for specialization.
+        </div>
+
+        <h4 class="mt-4">💡 Simple IT Process Flow:</h4>
+        <div class="text-center mt-3">
+            <div class="d-inline-flex align-items-center">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Idea</div>
+                </div>
+                <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Plan</div>
+                </div>
+                <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Build</div>
+                </div>
+                <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Test</div>
+                </div>
+                <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-label">Launch</div>
+                </div>
+                <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <div class="step-label">Improve</div>
+                </div>
+            </div>
+        </div>
+    `
+            },
+            {
+                title: "IT Roles & Career Paths",
+                icon: "fa-route",
+                content: `
+        <p class="lead">The IT industry isn't just 'coding'—it's a universe of specialized roles!</p>
+        
+        <div class="cards-grid">
+            <div class="info-card">
+                <h4><i class="fas fa-laptop-code"></i> Frontend Developer</h4>
+                <p><strong>Skills:</strong> HTML, CSS, JavaScript, React/Vue/Angular</p>
+                <p><strong>Builds:</strong> User interfaces and interactive web experiences</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-server"></i> Backend Developer</h4>
+                <p><strong>Skills:</strong> Java/Python/Node.js/C#, Databases, APIs</p>
+                <p><strong>Builds:</strong> Server logic, data management, and application cores</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-layer-group"></i> Full-Stack Developer</h4>
+                <p><strong>Skills:</strong> Frontend + Backend + DevOps basics</p>
+                <p><strong>Builds:</strong> Complete end-to-end web applications</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fab fa-java"></i> Java Developer</h4>
+                <p><strong>Skills:</strong> Java, Spring Boot, Hibernate, Microservices</p>
+                <p><strong>Builds:</strong> Enterprise applications, banking systems, Android apps</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fab fa-python"></i> Python Developer</h4>
+                <p><strong>Skills:</strong> Python, Django/Flask, FastAPI, scripting</p>
+                <p><strong>Builds:</strong> Web apps, automation tools, data pipelines, AI/ML systems</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-mobile-alt"></i> Mobile App Developer</h4>
+                <p><strong>Skills:</strong> Kotlin/Java (Android), Swift (iOS), React Native/Flutter</p>
+                <p><strong>Builds:</strong> Native and cross-platform mobile applications</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-building"></i> SAP Consultant</h4>
+                <p><strong>Types:</strong> ABAP (Technical), Functional, Technical Consultant</p>
+                <p><strong>Focus:</strong> Enterprise resource planning systems for large corporations</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-cloud"></i> Cloud Engineer</h4>
+                <p><strong>Skills:</strong> AWS/Azure/GCP, Docker, Kubernetes, Terraform</p>
+                <p><strong>Builds:</strong> Scalable cloud infrastructure and deployment pipelines</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-brain"></i> Data Scientist</h4>
+                <p><strong>Skills:</strong> Python/R, ML algorithms, Statistics, SQL</p>
+                <p><strong>Builds:</strong> Predictive models, AI solutions, and data insights</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-chart-bar"></i> Data Analyst</h4>
+                <p><strong>Skills:</strong> SQL, Excel, Tableau/Power BI, Python/R basics</p>
+                <p><strong>Analyzes:</strong> Business data to drive decision-making and reports</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-shield-alt"></i> Cybersecurity Professional</h4>
+                <p><strong>Specialties:</strong> Ethical Hacking, Security Analysis, Network Security</p>
+                <p><strong>Protects:</strong> Systems, networks, and data from cyber threats</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-database"></i> Database Administrator (DBA)</h4>
+                <p><strong>Skills:</strong> SQL Server/Oracle/MySQL, backup/recovery, performance tuning</p>
+                <p><strong>Manages:</strong> Database installation, configuration, security, and maintenance</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-database"></i> Database Developer</h4>
+                <p><strong>Skills:</strong> SQL, Stored Procedures, ETL processes, database design</p>
+                <p><strong>Builds:</strong> Database structures, queries, and data integration solutions</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-palette"></i> UI/UX Designer</h4>
+                <p><strong>Skills:</strong> Figma, Adobe XD, wireframing, user research</p>
+                <p><strong>Designs:</strong> Intuitive user interfaces and seamless experiences</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-network-wired"></i> DevOps Engineer</h4>
+                <p><strong>Skills:</strong> CI/CD, automation, monitoring, cloud platforms</p>
+                <p><strong>Manages:</strong> Development pipelines and infrastructure automation</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-robot"></i> AI/ML Engineer</h4>
+                <p><strong>Skills:</strong> TensorFlow/PyTorch, neural networks, NLP/CV</p>
+                <p><strong>Builds:</strong> Intelligent systems, recommendation engines, AI models</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-cogs"></i> System Administrator</h4>
+                <p><strong>Skills:</strong> Linux/Windows Server, networking, troubleshooting</p>
+                <p><strong>Manages:</strong> IT infrastructure, servers, and network systems</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-code-branch"></i> Software Architect</h4>
+                <p><strong>Skills:</strong> System design, patterns, scalability, technical leadership</p>
+                <p><strong>Designs:</strong> High-level software structures and technical roadmaps</p>
+            </div>
+        </div>
+
+        <div class="alert alert-warning mt-4">
+            <i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> You don't need to know everything—just find your passion and master it deeply!
+        </div>
+
+        <h3 class="mt-4">🎯 How to Choose Your Path?</h3>
+        <ul class="content-list">
+            <li><strong>Visual Creativity?</strong> → Frontend Development / UI-UX Design</li>
+            <li><strong>Logic & Systems?</strong> → Backend Development / Java / Python</li>
+            <li><strong>Data & Insights?</strong> → Data Science / Data Analytics / Database Roles</li>
+            <li><strong>Security & Defense?</strong> → Cybersecurity</li>
+            <li><strong>Mobile & Apps?</strong> → Mobile App Development (Android/iOS)</li>
+            <li><strong>Enterprise & Business?</strong> → SAP / Cloud Engineering</li>
+            <li><strong>Infrastructure & Automation?</strong> → DevOps / System Administration</li>
+            <li><strong>Intelligent Systems?</strong> → AI/ML Engineering / Data Science</li>
+            <li><strong>Data Storage & Management?</strong> → DBA / Database Developer</li>
+            <li><strong>Technical Leadership?</strong> → Software Architecture / Technical Consulting</li>
+        </ul>
+        
+        <div class="alert alert-info mt-4">
+            <i class="fas fa-handshake"></i> <strong>Career Progression:</strong> Many professionals start as developers or analysts and grow into specialized or leadership roles. Your first role is just the beginning!
+        </div>
+
+        <h4 class="mt-4">📊 Database Career Paths Explained:</h4>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5><i class="fas fa-user-cog"></i> Database Administrator</h5>
+                        <p>Focuses on installation, configuration, security, backup, recovery, and performance tuning of database systems.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5><i class="fas fa-code"></i> Database Developer</h5>
+                        <p>Focuses on designing databases, writing SQL queries, stored procedures, and creating ETL processes for data integration.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5><i class="fas fa-chart-line"></i> Data Engineer</h5>
+                        <p>Builds data pipelines, manages big data platforms, and prepares data for analysis (often considered separate from traditional DB roles).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
+            },
+            {
+                title: "Choosing Your Tech Stack",
+                icon: "fa-code",
+                content: `
+        <h3>📌 The 6-Point Decision Framework</h3>
+        
+        <div class="cards-grid">
+            <div class="info-card">
+                <h4>1. Interest-Based</h4>
+                <p>What excites you most?</p>
+                <ul>
+                    <li>Visual apps? → JavaScript</li>
+                    <li>System logic? → Java/Python</li>
+                    <li>Data & predictions? → Python/R</li>
+                    <li>Mobile apps? → Kotlin/Swift</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>2. Background-Based</h4>
+                <p>What's your starting point?</p>
+                <ul>
+                    <li>Complete beginner? → Python</li>
+                    <li>C/C++ background? → Java</li>
+                    <li>Math strong? → Python (Data Science)</li>
+                    <li>Design skills? → UI/UX</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>3. Market Demand</h4>
+                <p>Where are the jobs?</p>
+                <ul>
+                    <li>Mass hiring: Java, Python, JavaScript</li>
+                    <li>High growth: Python (AI/ML), React</li>
+                    <li>High-paying niche: Cybersecurity, iOS</li>
+                    <li>Always needed: SQL/Database</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>4. Future Scope</h4>
+                <p>Long-term growth</p>
+                <ul>
+                    <li>Java: 25+ years strong</li>
+                    <li>Python: AI/ML boom</li>
+                    <li>JavaScript: Web everywhere</li>
+                    <li>Cloud: Every company moving here</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>5. Learning Curve</h4>
+                <p>How fast can you start?</p>
+                <ul>
+                    <li>Easiest: HTML/CSS → Quick start</li>
+                    <li>Beginner friendly: Python → Fast learning</li>
+                    <li>Moderate: Java/JavaScript → Steady pace</li>
+                    <li>Advanced: AI/ML → Longer journey</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>6. Career Growth</h4>
+                <p>Professional development</p>
+                <ul>
+                    <li>Web: Many opportunities</li>
+                    <li>Mobile: Specialized roles</li>
+                    <li>Data/AI: High growth field</li>
+                    <li>Cloud: Future-proof skills</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="mt-5">⚠️ Common Mistakes to Avoid</h3>
+        <ul class="content-list">
+            <li><strong>Trend Chasing:</strong> Don't learn AI just because everyone is</li>
+            <li><strong>Multiple Languages:</strong> Master ONE before adding another</li>
+            <li><strong>Following Friends Blindly:</strong> Your path is unique</li>
+            <li><strong>Switching Too Often:</strong> Stick with one for at least 6 months</li>
+        </ul>
+    `
+            },
+            {
+                title: "Learning Programming Right",
+                icon: "fa-book-open",
+                content: `
+                    <h3>🔹 1. Learn Fundamentals & Syntax</h3>
+                    <p>Build strong basics first. Focus on:</p>
+                    <ul class="content-list">
+                        <li>Variables, data types, operators</li>
+                        <li>Conditionals (if-else)</li>
+                        <li>Loops (for, while)</li>
+                        <li>Functions/methods</li>
+                        <li>Arrays/Lists</li>
+                        <li>Basic OOP (Classes & Objects)</li>
+                    </ul>
+
+                    <h3 class="mt-4">🔹 2. Build Logic & Problem-Solving</h3>
+                    <p>Syntax is easy. Logic is hard.</p>
+                    <div class="cards-grid">
+                        <div class="info-card">
+                            <h4>Start Simple</h4>
+                            <ul>
+                                <li>Pattern printing</li>
+                                <li>Number problems</li>
+                                <li>Array manipulation</li>
+                                <li>String problems</li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <h4>Practice Daily</h4>
+                            <ul>
+                                <li>Solve 3-5 problems daily</li>
+                                <li>Don't copy solutions</li>
+                                <li>Struggle, then learn</li>
+                                <li>Build consistency</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-4">🔹 3. Introduction to DSA</h3>
+                    <p>Learn in this order:</p>
+                    <ol class="content-list">
+                        <li>Arrays & Strings</li>
+                        <li>Sorting & Searching</li>
+                        <li>Linked Lists</li>
+                        <li>Stacks & Queues</li>
+                        <li>Trees</li>
+                        <li>Graphs (basic)</li>
+                    </ol>
+
+                    <h3 class="mt-4">🔹 4. Practice Platforms</h3>
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>Best For</th>
+                                <th>Difficulty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>HackerRank</td>
+                                <td>Beginners, syntax practice</td>
+                                <td>Easy-Medium</td>
+                            </tr>
+                            <tr>
+                                <td>LeetCode</td>
+                                <td>Interview prep</td>
+                                <td>Medium-Hard</td>
+                            </tr>
+                            <tr>
+                                <td>CodeStudio</td>
+                                <td>Step-by-step learning</td>
+                                <td>Beginner-Advanced</td>
+                            </tr>
+                            <tr>
+                                <td>GeeksforGeeks</td>
+                                <td>Theory + Practice</td>
+                                <td>All levels</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="alert alert-warning mt-4">
+            <h5><i class="fas fa-exclamation-circle"></i> Common Learning Mistakes</h5>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <ul>
+                        <li>Watching videos without coding</li>
+                        <li>Jumping to advanced topics too soon</li>
+                        <li>Copy-pasting solutions without understanding</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li>Not building projects</li>
+                        <li>Comparing progress with others</li>
+                        <li>Giving up when stuck (debugging is learning!)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+                    <div class="alert alert-success mt-4">
+                        <i class="fas fa-target"></i> <strong>Daily Target:</strong> Minimum 2 problems + 30 minutes of learning
+                    </div>
+                `
+            },
+            {
+                title: "Building Real Projects",
+                icon: "fa-project-diagram",
+                content: `
+                    <h3>🔹 Why Projects Matter</h3>
+                    <div class="alert alert-info">
+                        <strong>Reality Check:</strong> 1 strong project > 10 certificates
+                    </div>
+
+                    <p>Projects prove you can:</p>
+                    <ul class="content-list">
+                        <li>✅ Apply knowledge practically</li>
+                        <li>✅ Finish what you start</li>
+                        <li>✅ Solve real-world problems</li>
+                        <li>✅ Work independently</li>
+                    </ul>
+
+                    <h3 class="mt-4">🔹 Project Ideas for Beginners</h3>
+                    <div class="cards-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-calculator"></i> Calculator App</h4>
+                            <p>Basic arithmetic operations with clean UI</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-tasks"></i> To-Do List</h4>
+                            <p>Add, edit, delete, mark tasks complete</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-wallet"></i> Expense Tracker</h4>
+                            <p>Track income, expenses, generate reports</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-cloud-sun"></i> Weather App</h4>
+                            <p>Fetch weather data using API</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-utensils"></i> Recipe Finder</h4>
+                            <p>Search and display recipes with images</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-book"></i> Library System</h4>
+                            <p>Manage books, members, borrowing</p>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-4">🔹 Developer Mindset</h3>
+                    <ul class="content-list">
+                        <li>Break problems into small steps</li>
+                        <li>Google is your best friend</li>
+                        <li>Learn to debug effectively</li>
+                        <li>Start simple, improve gradually</li>
+                        <li>Deploy your projects (GitHub, Heroku, Netlify)</li>
+                    </ul>
+
+                    <div class="alert alert-warning mt-4">
+                        <i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> Don't build random projects. Solve real needs!
+                    </div>
+                `
+            },
+            {
+                title: "Resume Building",
+                icon: "fa-file-alt",
+                content: `
+                    <h3>🔹 ATS-Friendly Resume Rules</h3>
+                    <div class="cards-grid">
+                        <div class="info-card">
+                            <h4>✅ DO</h4>
+                            <ul>
+                                <li>Use standard fonts</li>
+                                <li>Simple formatting</li>
+                                <li>PDF format</li>
+                                <li>Include keywords</li>
+                                <li>One page only</li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <h4>❌ DON'T</h4>
+                            <ul>
+                                <li>Graphics/images</li>
+                                <li>Tables/columns</li>
+                                <li>Fancy templates</li>
+                                <li>Multiple pages</li>
+                                <li>Spelling errors</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-4">🔹 Resume Structure</h3>
+                    <ol class="content-list">
+                        <li><strong>Contact Information</strong> (Top center)</li>
+                        <li><strong>Education</strong> (Degree, college, CGPA)</li>
+                        <li><strong>Skills</strong> (Technical + Soft skills)</li>
+                        <li><strong>Projects</strong> (Most important!)</li>
+                        <li><strong>Internships/Training</strong> (If any)</li>
+                        <li><strong>Achievements</strong> (Optional)</li>
+                    </ol>
+
+                    <h3 class="mt-4">🔹 Project Description Format</h3>
+                    <div class="info-card">
+                        <h4>Expense Tracker App | Java, Spring Boot, MySQL</h4>
+                        <ul>
+                            <li>Developed a full-stack web application to track daily expenses with user authentication</li>
+                            <li>Implemented CRUD operations allowing users to add, view, edit, and delete expenses</li>
+                            <li>Integrated MySQL database to store user data securely</li>
+                            <li>GitHub: [link] | Live Demo: [link]</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="mt-4">🔹 The 6-Second Scan</h3>
+                    <p>Recruiters spend only 6 seconds on your resume:</p>
+                    <ul class="content-list">
+                        <li><strong>0-2 sec:</strong> Name & education</li>
+                        <li><strong>2-4 sec:</strong> Skills (match job?)</li>
+                        <li><strong>4-6 sec:</strong> Projects (any proof?)</li>
+                    </ul>
+
+                    <div class="alert alert-danger mt-4">
+                        <i class="fas fa-exclamation-triangle"></i> <strong>Common Mistakes:</strong> No projects, vague descriptions, spelling errors, unprofessional email
+                    </div>
+                `
+            },
+            {
+                title: "Job Search Strategies",
+                icon: "fa-search",
+                content: `
+                    <h3>🔹 Major IT Companies & Portals</h3>
+                    <div class="cards-grid">
+                        <div class="info-card">
+                            <h4>Deloitte</h4>
+                            <p><strong>Portal:</strong> careers.deloitte.com</p>
+                            <p><strong>Programs:</strong> Analyst, USI Analyst</p>
+                            <p><strong>Timing:</strong> Aug-Sep</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Accenture</h4>
+                            <p><strong>Portal:</strong> accenture.com/careers</p>
+                            <p><strong>Program:</strong> ASE</p>
+                            <p><strong>Timing:</strong> Year-round</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>TCS</h4>
+                            <p><strong>Portal:</strong> careers.tcs.com</p>
+                            <p><strong>Programs:</strong> Ninja, Digital, Ignite</p>
+                            <p><strong>Test:</strong> NQT</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Infosys</h4>
+                            <p><strong>Portal:</strong> infosys.com/careers</p>
+                            <p><strong>Program:</strong> Systems Engineer</p>
+                            <p><strong>Path:</strong> InfyTQ certification</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Cognizant</h4>
+                            <p><strong>Portal:</strong> careers.cognizant.com</p>
+                            <p><strong>Program:</strong> Programmer Analyst</p>
+                            <p><strong>Test:</strong> AMCAT</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Capgemini</h4>
+                            <p><strong>Portal:</strong> careers.capgemini.com</p>
+                            <p><strong>Program:</strong> GET</p>
+                            <p><strong>Note:</strong> Campus hiring focus</p>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-4">🔹 Application Strategy</h3>
+                    <ul class="content-list">
+                        <li>Create profiles on ALL company portals</li>
+                        <li>Set job alerts for "fresher" roles</li>
+                        <li>Apply within 48 hours of posting</li>
+                        <li>Customize resume slightly for each</li>
+                        <li>Follow up politely after 2 weeks</li>
+                    </ul>
+
+                    <h3 class="mt-4">🔹 Referral Strategy (5x Better!)</h3>
+                    <div class="info-card">
+                        <h4>How to Get Referrals:</h4>
+                        <ol>
+                            <li>Connect with alumni on LinkedIn</li>
+                            <li>Search: "College name + Company"</li>
+                            <li>Be polite and prepared</li>
+                            <li>Share resume, explain interest</li>
+                            <li>Thank them regardless of outcome</li>
+                        </ol>
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                        <i class="fas fa-chart-line"></i> <strong>Fact:</strong> Referrals increase your chances by 5x!
+                    </div>
+                `
+            },
+            {
+                title: "Interview Preparation",
+                icon: "fa-comments",
+                content: `
+                    <h3>🔹 Interview Process</h3>
+                    <div class="cards-grid">
+                        <div class="info-card">
+                            <h4>Round 1: Online Test</h4>
+                            <p>Aptitude + Coding + MCQs</p>
+                            <p><strong>Duration:</strong> 45-90 mins</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Round 2: Technical-1</h4>
+                            <p>Core concepts + 1-2 coding problems</p>
+                            <p><strong>Duration:</strong> 30-60 mins</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Round 3: Technical-2</h4>
+                            <p>Projects discussion + problem-solving</p>
+                            <p><strong>Duration:</strong> 30-45 mins</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Round 4: HR Round</h4>
+                            <p>Culture fit + salary + joining</p>
+                            <p><strong>Duration:</strong> 15-30 mins</p>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-4">🔹 Common Technical Questions</h3>
+                    <ul class="content-list">
+                        <li>Explain OOP concepts with examples</li>
+                        <li>Difference between Array and ArrayList</li>
+                        <li>What is polymorphism? Give real example</li>
+                        <li>Explain your project in detail</li>
+                        <li>Write code to reverse a string</li>
+                        <li>Find duplicate in an array</li>
+                        <li>What is REST API?</li>
+                        <li>Explain database normalization</li>
+                    </ul>
+
+                    <h3 class="mt-4">🔹 Mock Interview Practice</h3>
+                    <div class="alert alert-warning">
+                        <strong>Key Areas:</strong>
+                        <ul>
+                            <li>Self-Introduction (2 mins max)</li>
+                            <li>Project Explanation (prepare 1-2 deeply)</li>
+                            <li>Technical Problem-Solving (think aloud)</li>
+                            <li>HR Questions (honest but strategic)</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="mt-4">🔹 Common HR Questions</h3>
+                    <ul class="content-list">
+                        <li>Tell me about yourself</li>
+                        <li>Why should we hire you?</li>
+                        <li>What are your strengths/weaknesses?</li>
+                        <li>Where do you see yourself in 5 years?</li>
+                        <li>Why do you want to join our company?</li>
+                    </ul>
+                `
+            },
+            {
+                title: "Success & Consistency",
+                icon: "fa-trophy",
+                content: `
+                    <h3>🔹 The Success Formula</h3>
+                    <div class="cards-grid">
+                        <div class="info-card">
+                            <h4><i class="fas fa-calendar-check"></i> Consistency</h4>
+                            <p>Code daily. Even 30 minutes counts. Small daily progress compounds into massive results.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-brain"></i> Discipline</h4>
+                            <p>Don't wait for motivation. Build systems and habits that work regardless of how you feel.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-chart-line"></i> Growth Mindset</h4>
+                            <p>Every error is a lesson. Every rejection is redirection. Keep learning, keep growing.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-users"></i> Community</h4>
+                            <p>Connect with peers. Share knowledge. Learn together. Your network is your net worth.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-5">🔹 Your Action Plan</h3>
+                    <div class="info-card">
+                        <h4>Week 1-2: Foundation</h4>
+                        <ul>
+                            <li>Choose your tech stack</li>
+                            <li>Start learning basics</li>
+                            <li>Solve 5 problems daily</li>
+                        </ul>
+                    </div>
+                    <div class="info-card mt-3">
+                        <h4>Month 1: Skills Building</h4>
+                        <ul>
+                            <li>Complete fundamentals</li>
+                            <li>Build first small project</li>
+                            <li>Create LinkedIn profile</li>
+                        </ul>
+                    </div>
+                    <div class="info-card mt-3">
+                        <h4>Month 2-3: Portfolio</h4>
+                        <ul>
+                            <li>Build 2-3 solid projects</li>
+                            <li>Learn DSA basics</li>
+                            <li>Create ATS resume</li>
+                        </ul>
+                    </div>
+                    <div class="info-card mt-3">
+                        <h4>Month 4+: Job Ready</h4>
+                        <ul>
+                            <li>Start applying to companies</li>
+                            <li>Practice interview questions</li>
+                            <li>Network on LinkedIn</li>
+                            <li>Keep building projects</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="mt-5">🔹 Final Words</h3>
+                    <div class="alert alert-success">
+                        <p class="lead"><strong>Remember:</strong></p>
+                        <p>The first step is always the hardest. You've already taken it. Now keep walking.</p>
+                        <p><strong>Stay hungry. Stay consistent. Believe in your ability to learn, to grow, to adapt.</strong></p>
+                        <p>Your career in IT is built one line of code, one project, one interview at a time.</p>
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <h2 class="hero-title">Thank You! 🚀</h2>
+                        <p class="lead">Connect with me on LinkedIn</p>
+                        <p>Let's build your future in tech together!</p>
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/rushikesh-narawade" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/rushikesh-narawade" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:rushikesh@example.com" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+        function createParticles() {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                document.body.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        let currentSection = 0;
+
+        function renderSection(index) {
+            const section = sections[index];
+            const container = document.getElementById('contentContainer');
+
+            container.innerHTML = `
+            <div class="section-card active">
+                <h2 class="section-header">
+                    <i class="section-icon fas ${section.icon}"></i>
+                    ${section.title}
+                </h2>
+                ${section.content}
+                <div class="text-center mt-4">
+                    <small class="text-muted">Section ${index + 1} of ${sections.length}</small>
+                </div>
+            </div>
+        `;
+
+            // Update progress bar
+            const progress = ((index + 1) / sections.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showSection(index) {
+            if (index >= 0 && index < sections.length) {
+                currentSection = index;
+                renderSection(currentSection);
+            }
+        }
+
+        function nextSection() {
+            if (currentSection < sections.length - 1) {
+                currentSection++;
+                renderSection(currentSection);
+            }
+        }
+
+        function previousSection() {
+            if (currentSection > 0) {
+                currentSection--;
+                renderSection(currentSection);
+            }
+        }
+
+        // Load first section on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            renderSection(0);
+        });
+    </script>
+
+</body>
+
+</html>
