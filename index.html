@@ -287,8 +287,8 @@ section {
 
 /* KEY CHANGE: hero uses its own wider left-edge container */
 #hero .container {
-  padding: 0 60px 0 32px;
-  max-width: 1500px;
+  padding: 0 62px 0 0;
+  max-width: 2000px;
 }
 
 .hero-inner {
@@ -1842,6 +1842,7 @@ section {
   text-align: center;
   letter-spacing: 0.04em;
 }
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
   .container { padding: 0 32px; }
@@ -1914,13 +1915,12 @@ section {
     IT LaunchPad
   </a>
   <ul class="nav-links">
-    <li><a href="#hero">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#roles">Roles</a></li>
     <li><a href="#learning">Learn</a></li>
     <li><a href="#jobs">Jobs</a></li>
     <li><a href="#interviews">Interview</a></li>
-    <li><a href="#cta" class="nav-cta">Feedback</a></li>
+    <li><a href="#cta" class="nav-cta">Connect</a></li>
   </ul>
 </nav>
 
@@ -2257,11 +2257,108 @@ section {
 </section>
 
 <div class="section-divider"></div>
+<div class="section-divider"></div>
+
+<!-- ─── LINKEDIN & NETWORK ─── -->
+<section id="linkedin">
+  <div class="container">
+    <div class="section-label reveal">07 — LinkedIn & Network</div>
+    <h2 class="section-title reveal reveal-delay-1">Build Your <span class="accent">Professional Presence</span></h2>
+    <p class="section-body reveal reveal-delay-2">Your LinkedIn profile is your digital resume. Recruiters search here daily — make sure they find you.</p>
+
+    <!-- Profile Optimization -->
+    <div class="about-grid reveal reveal-delay-2" style="margin-top: 48px; gap: 40px;">
+      <div>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 20px;">Profile Must-Haves</h3>
+        <ul class="structure-list">
+          <li><span class="num">01</span> Professional photo (clear, light background)</li>
+          <li><span class="num">02</span> Headline: Role + Skills (not just "Student")</li>
+          <li><span class="num">03</span> About section: 3-4 lines, first person, keywords</li>
+          <li><span class="num">04</span> Education with CGPA and relevant coursework</li>
+          <li><span class="num">05</span> Skills section: add 10+ relevant tech skills</li>
+          <li><span class="num">06</span> Featured section: pin your best project or GitHub</li>
+          <li><span class="num">07</span> Custom URL: linkedin.com/in/yourname</li>
+        </ul>
+
+        <div class="glass-card reveal" style="margin-top: 20px; background: rgba(79,255,176,0.04); border-color: rgba(79,255,176,0.12);">
+          <h4 style="font-size: 0.88rem; font-weight: 700; color: var(--neon); margin-bottom: 10px;">Headline Formula</h4>
+          <div style="background: var(--ink); border-radius: 8px; padding: 14px 16px; font-family: 'Courier New', Consolas, monospace; font-size: 0.75rem; color: var(--text-secondary); border: 1px solid var(--glass-border); line-height: 1.7;">
+            <div style="color: var(--neon);">Java Developer | Spring Boot · REST APIs · MySQL</div>
+            <div style="margin-top: 6px; color: var(--violet);">Python Enthusiast | Django · Data Analysis · ML</div>
+            <div style="margin-top: 6px; color: var(--text-muted);">Aspiring [Role] | [Skill 1] · [Skill 2] · [Skill 3]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-cards">
+        <div class="glass-card reveal reveal-delay-1">
+          <div class="about-card">
+            <div class="about-card-icon">🔗</div>
+            <div class="about-card-content">
+              <h4>Connect Strategically</h4>
+              <p>Send 5–10 connection requests daily to alumni, professionals in your target role, and recruiters at companies you admire.</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card reveal reveal-delay-2">
+          <div class="about-card">
+            <div class="about-card-icon">✍️</div>
+            <div class="about-card-content">
+              <h4>Post Consistently</h4>
+              <p>Share 1 post per week — what you learned, a project update, or a coding insight. Visibility = opportunities.</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card reveal reveal-delay-3">
+          <div class="about-card">
+            <div class="about-card-icon">🤝</div>
+            <div class="about-card-content">
+              <h4>Engage Genuinely</h4>
+              <p>Comment on industry posts, celebrate others' wins, and ask thoughtful questions. Relationships, not follower counts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Connection Message Template -->
+    <div style="margin-top: 32px;" class="reveal reveal-delay-3">
+      <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">Cold Outreach Message Template</h3>
+      <div style="background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 24px;">
+        <div style="background: var(--ink); border-radius: 8px; padding: 18px 20px; font-family: 'Courier New', Consolas, monospace; font-size: 0.75rem; color: var(--text-secondary); border: 1px solid var(--glass-border); line-height: 1.9;">
+          <div style="color: var(--neon);">Hi [Name],</div>
+          <div style="margin-top: 8px;">I'm [Your Name], a final-year [Branch] student from [College].</div>
+          <div>I came across your profile and noticed you're a [Role] at [Company].</div>
+          <div style="margin-top: 8px;">I'm actively learning [Skill] and exploring opportunities in [Domain].</div>
+          <div>Would you be open to a brief chat or any guidance?</div>
+          <div style="margin-top: 8px; color: var(--text-muted);">Thank you for your time!</div>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 12px;">✦ Keep it under 5 lines · Be specific · Don't ask for a job directly</p>
+      </div>
+    </div>
+
+    <!-- Networking Mistakes -->
+    <h3 class="section-title reveal" style="font-size: 1.3rem; margin-top: 48px;">⚠️ Networking <span class="accent">Mistakes</span></h3>
+    <div class="mistakes-grid reveal reveal-delay-1">
+      <div class="mistake-card"><div class="mistake-x">✗</div><div><h4>Empty Profile</h4><p>A profile with no photo, no headline, and no about section will be ignored by every recruiter.</p></div></div>
+      <div class="mistake-card"><div class="mistake-x">✗</div><div><h4>Sending Blank Requests</h4><p>Always add a note when connecting. A blank request looks lazy and gets rejected more often.</p></div></div>
+      <div class="mistake-card"><div class="mistake-x">✗</div><div><h4>Only Connecting, Never Engaging</h4><p>Building a network you never interact with is useless. Comment, react, and start conversations.</p></div></div>
+      <div class="mistake-card"><div class="mistake-x">✗</div><div><h4>Asking for a Job Immediately</h4><p>"Can you refer me?" in the first message kills every opportunity. Build the relationship first.</p></div></div>
+    </div>
+
+    <!-- GitHub reminder -->
+    <div class="glass-card reveal reveal-delay-2" style="margin-top: 32px; background: rgba(167,139,250,0.05); border-color: rgba(167,139,250,0.15);">
+      <p style="font-size: 0.92rem; color: var(--text-secondary);">
+        <strong style="color: var(--violet);">Pro Tip:</strong> Your GitHub profile is your second portfolio. Keep your commit history active, write clear README files for every project, and pin your 3 best repositories. Link it in your LinkedIn About section and resume.
+      </p>
+    </div>
+  </div>
+</section>
 
 <!-- ─── PROJECTS ─── -->
 <section id="projects">
   <div class="container">
-    <div class="section-label reveal">07 — Projects</div>
+    <div class="section-label reveal">08 — Projects</div>
     <h2 class="section-title reveal reveal-delay-1">Build <span class="accent">Real Things</span></h2>
     <p class="section-body reveal reveal-delay-2">1 strong project beats 10 certificates. Projects prove you can apply knowledge, finish what you start, and solve real problems.</p>
 
@@ -2291,7 +2388,7 @@ section {
 <!-- ─── RESUME ─── -->
 <section id="resume">
   <div class="container">
-    <div class="section-label reveal">08 — Resume</div>
+    <div class="section-label reveal">09 — Resume</div>
     <h2 class="section-title reveal reveal-delay-1">ATS-Ready <span class="accent">Resume</span></h2>
     <p class="section-body reveal reveal-delay-2">Recruiters spend just 6 seconds on your resume. Make every second count.</p>
 
@@ -2342,7 +2439,7 @@ section {
 <!-- ─── JOB SEARCH ─── -->
 <section id="jobs">
   <div class="container">
-    <div class="section-label reveal">09 — Job Search</div>
+    <div class="section-label reveal">10 — Job Search</div>
     <h2 class="section-title reveal reveal-delay-1">Smart <span class="accent">Application Strategy</span></h2>
     <p class="section-body reveal reveal-delay-2">Where to apply, when to apply, and how to get noticed in a competitive market.</p>
 
@@ -2379,7 +2476,7 @@ section {
 <!-- ─── INTERVIEWS ─── -->
 <section id="interviews">
   <div class="container">
-    <div class="section-label reveal">10 — Interviews</div>
+    <div class="section-label reveal">11 — Interviews</div>
     <h2 class="section-title reveal reveal-delay-1">Crack Every <span class="accent">Interview</span></h2>
     <p class="section-body reveal reveal-delay-2">Know the structure, prepare for the patterns, and practice until it's natural.</p>
 
@@ -2426,7 +2523,7 @@ section {
 <!-- ─── SUCCESS ─── -->
 <section id="success">
   <div class="container">
-    <div class="section-label reveal">11 — Success Formula</div>
+    <div class="section-label reveal">12 — Success Formula</div>
     <h2 class="section-title reveal reveal-delay-1">Consistency <span class="accent">Wins</span></h2>
     <p class="section-body reveal reveal-delay-2">Your career in IT is built one line of code, one project, one interview at a time.</p>
 
